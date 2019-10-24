@@ -219,7 +219,7 @@ class Zerto(object):
             req = self.get_request('v1/alerts/{0}'.format(alert))
             return Alert(**req.json())
         req = self.get_request('v1/alerts')
-        return list([Alert(**res) for res in req.json()])
+        return (req.json())
 
     def get_event(self, event=None, **kwargs):
         '''Retrieve specific event or all'''
@@ -269,24 +269,24 @@ class Zerto(object):
         '''Retrieve specific vm or all'''
         if vmid is not None:
             req = self.get_request('v1/vms/{0}'.format(vmid))
-            return VM(**req.json())
+            return (req.json())
         req = self.get_request('v1/vms', params=(kwargs or None))
-        return list([VM(**res) for res in req.json()])
+        return (req.json())
 
     def get_vpg(self, vpgid=None, **kwargs):
         '''Retrieve specific vpg or all'''
         if vpgid is not None:
             req = self.get_request('v1/vpgs/{0}'.format(vpgid))
-            return VPG(**req.json())
+            return (req.json())
         req = self.get_request('v1/vpgs', params=(kwargs or None))
-        return list([VPG(**res) for res in req.json()])
+        return (req.json())
 
     def get_vra(self, vraid=None, **kwargs):
         if vraid is not None:
             req = self.get_request('v1/vras/{0}'.format(vraid))
             return VRA(**req.json())
         req = self.get_request('v1/vras', params=(kwargs or None))
-        return list([VRA(**res) for res in req.json()])
+        return (req.json())
 
     def get_zorg(self, zorgid=None):
         if zorgid is not None:

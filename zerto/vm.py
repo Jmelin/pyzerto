@@ -29,8 +29,8 @@ class VM(ZertoObject):
             self.entities[k] = site_type[v]
 
     def __str__(self):
-        return 'name={0}, identifier={1}, status={2}, sub_status={3}'.format(
-            self.name, self.identifier, self.status, self.sub_status)
+        return '{0}'.format(
+            self.name)
 
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
