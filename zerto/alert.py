@@ -3,6 +3,7 @@
 
 from zertoobject import ZertoObject
 from misc import parse_timestamp
+import json
 
 
 class Alert(ZertoObject):
@@ -23,9 +24,18 @@ class Alert(ZertoObject):
         self.level = kwargs.get('Level')
         self.is_dismissed = kwargs.get('IsDismissed')
 
+        with open('zerto_error_messages/zerto_error_messages.json', 'r') as errorfile:
+            data = errorfile.read()
+            error_data = json.loads(data)
+
+            self.alert_name = error_data[""+ self.help_identifier]['Alert Name']
+            self.alert_severity = error_data[""+ self.help_identifier]['Severity']
+            self.alert_more_description = error_data[""+ self.help_identifier]['Alert Description']
+
     def __str__(self):
-        return 'help_identifier={0}, entity={1}, event_type={2}'.format(
-            self.help_identifier, self.entity, self.level)
+
+        return 'vpgs={0}, identifier={1}, alert_name={2}, description={3}, entity={4}, level={5}, dismissed={6}'.format(
+            self.vpgs, self.help_identifier, self.alert_name, self.description, self.entity, self.level, self.is_dismissed)
 
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

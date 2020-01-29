@@ -1,0 +1,3 @@
+[submodule "zerto_error_messages"]
+	path = zerto_error_messages
+	url = https://github.com/Jmelin/zerto_error_messages
